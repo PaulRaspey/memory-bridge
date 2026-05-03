@@ -1,0 +1,24 @@
+kind = "api"
+previewPath = "/v1"
+title = "API Server"
+version = "1.0.0"
+id = "3B4_FFSkEVBkAeYMFRJ2e"
+
+[[services]]
+localPort = 8082
+name = "Memory Bridge API"
+paths = ["/v1", "/p"]
+
+[services.development]
+run = "python3 /home/runner/workspace/artifacts/api-server/run.py"
+
+[services.production]
+
+[services.production.run]
+args = ["python3", "/home/runner/workspace/artifacts/api-server/run.py"]
+
+[services.production.run.env]
+PORT = "8082"
+
+[services.production.health.startup]
+path = "/v1/healthz"
